@@ -1,4 +1,6 @@
 import Stores from "../models/stores.model.js";
+import mongoose from "mongoose";
+
 
 export const getStores = async(req,res)=> {
     try {
@@ -30,6 +32,7 @@ export const addStore = async(req, res)=> {
 
 export const deleteStore = async(req,res) => {
     const {id} = req.params;
+    console.log(id);
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         console.log("Invalid Store ID:", id);

@@ -17,5 +17,26 @@ export const useStore = create((set) => ({
         const data = await res.json();
         set((state) => ({ store: [...state.store, data.data] }))
         return {success: true, message: "Store created successfully."}
+    },
+    fetchStores: async () => {
+        const res = await fetch("/api/stores");
+        const data = await res.json();
+        set({ stores: data.data })
+    },
+    deleteStore: async (sid) => {
+        console.log("deleting store", sid)
+        const res = await fetch(`/api/stores/${sid}`,{
+            method: "DELETE",
+            
+        });
+        const data = await res.json();
+        if(!data.success){
+            return {success: false, message: data.message}
+        }
+        set((state) => ({
+            store: state.store.filter(store => store._id.toString() !== sid.toString())
+          }));
+          
+        return {success: true, message: data.message}
     }
 }))

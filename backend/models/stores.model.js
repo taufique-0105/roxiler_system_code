@@ -1,19 +1,21 @@
 import mongoose from "mongoose";
 
-const storeSchema = new mongoose.Schema({
-    name:{
-        type: String,
-        require: true
+const storeSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      require: true,
     },
     image: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
-},
-{
-    timestamps: true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Stores = mongoose.model('Stores', storeSchema);
+const Stores = mongoose.model("Stores", storeSchema);
 
 export default Stores;
